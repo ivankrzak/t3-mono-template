@@ -7,7 +7,7 @@
     },
     "build": {
       "inputs": [{ "step": "install" }],
-      "commands": ["...", "./my-custom-build.sh"]
+      "commands": ["turbo run build"]
     }
   },
   "deploy": {

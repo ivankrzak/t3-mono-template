@@ -7,7 +7,7 @@
     },
     "build": {
       "inputs": [{ "step": "install" }],
-      "commands": ["turbo run build"]
+      "commands": ["pnpm build"]
     }
   },
   "deploy": {

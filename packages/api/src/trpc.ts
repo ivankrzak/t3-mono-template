@@ -10,7 +10,6 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
-import type { Session } from "@acme/auth";
 import { db } from "@acme/db/client";
 
 import {
@@ -44,7 +43,7 @@ import {
  */
 export const createTRPCContext = async (opts: {
   headers: Headers;
-  session: Session | null;
+  session: null;
 }) => {
   // const authToken = opts.headers.get("Authorization") ?? null;
   // const session = await isomorphicGetSession(opts.headers);

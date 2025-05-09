@@ -1,0 +1,15 @@
+services:
+  t3stack:
+    container_name: t3stack
+    image: postgres:16.1-alpine
+    restart: always
+    ports:
+      - "49703:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: t3stack
+    volumes:
+      - t3stack-volume:/var/lib/postgresql/data
+volumes:
+  t3stack-volume:

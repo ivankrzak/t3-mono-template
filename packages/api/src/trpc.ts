@@ -11,19 +11,24 @@ import superjson from "superjson";
 import { ZodError } from "zod";
 
 import type { Session } from "@acme/auth";
-import { auth, validateToken } from "@acme/auth";
 import { db } from "@acme/db/client";
+
+import {
+  getDecodedTokenFromCookie,
+  getFirebaseAdminAuth,
+} from "./lib/firebase/firebaseAdmin";
 
 /**
  * Isomorphic Session getter for API requests
  * - Expo requests will have a session token in the Authorization header
  * - Next.js requests will have a session token in cookies
  */
-const isomorphicGetSession = async (headers: Headers) => {
-  const authToken = headers.get("Authorization") ?? null;
-  if (authToken) return validateToken(authToken);
-  return auth();
-};
+// const isomorphicGetSession = async (headers: Headers) => {
+//   const authToken = headers.get("Authorization") ?? null;
+//   const sessionToken = token.slice("Bearer ".length);
+//   if (authToken) return validateToken(authToken);
+//   return auth();
+// };
 
 /**
  * 1. CONTEXT
@@ -41,16 +46,15 @@ export const createTRPCContext = async (opts: {
   headers: Headers;
   session: Session | null;
 }) => {
-  const authToken = opts.headers.get("Authorization") ?? null;
-  const session = await isomorphicGetSession(opts.headers);
+  // const authToken = opts.headers.get("Authorization") ?? null;
+  // const session = await isomorphicGetSession(opts.headers);
 
-  const source = opts.headers.get("x-trpc-source") ?? "unknown";
-  console.log(">>> tRPC Request from", source, "by", session?.user);
+  // const source = opts.headers.get("x-trpc-source") ?? "unknown";
+  // console.log(">>> tRPC Request from", source, "by", session?.user);
 
   return {
-    session,
+    headers: opts.headers,
     db,
-    token: authToken,
   };
 };
 
@@ -130,16 +134,37 @@ export const publicProcedure = t.procedure.use(timingMiddleware);
  *
  * @see https://trpc.io/docs/procedures
  */
-export const protectedProcedure = t.procedure
-  .use(timingMiddleware)
-  .use(({ ctx, next }) => {
-    if (!ctx.session?.user) {
-      throw new TRPCError({ code: "UNAUTHORIZED" });
-    }
-    return next({
-      ctx: {
-        // infers the `session` as non-nullable
-        session: { ...ctx.session, user: ctx.session.user },
-      },
-    });
+
+const enforceUserIsAuth = t.middleware(async ({ ctx, next }) => {
+  console.log("CTX HEADERS", ctx.headers);
+  const decodedTokenFomHeaders = (
+    ctx.headers.get("Authorization") ?? null
+  )?.slice("Bearer ".length);
+  const firebaseAdmin = getFirebaseAdminAuth();
+  const verifiedSessionFromHeaders = decodedTokenFomHeaders
+    ? await firebaseAdmin.verifyIdToken(decodedTokenFomHeaders)
+    : null;
+
+  const decodedTokenFomCookies = await getDecodedTokenFromCookie(ctx.headers);
+
+  if (!decodedTokenFomCookies && !verifiedSessionFromHeaders) {
+    throw new TRPCError({ code: "UNAUTHORIZED", message: "Unauthorized" });
+  }
+  // TODO move to context
+  const userFromDB = await db.user.findFirst({
+    where: {
+      firebaseUuid:
+        // @ts-expect-error
+        decodedTokenFomCookies?.uid ?? verifiedSessionFromHeaders.uid,
+    },
   });
+
+  return next({
+    ctx: {
+      ...ctx,
+      user: userFromDB,
+    },
+  });
+});
+
+export const protectedProcedure = t.procedure.use(enforceUserIsAuth);

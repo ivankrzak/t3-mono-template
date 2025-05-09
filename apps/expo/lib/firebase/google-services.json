@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "1085735650871",
+    "project_id": "t3-test-b1be7",
+    "storage_bucket": "t3-test-b1be7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085735650871:android:06c67a70699a94c5ada1b2",
+        "android_client_info": {
+          "package_name": "com.ftrdigital.turborepo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085735650871-0p326meuf0ul7n8n8thqr79to60vg1uq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ftrdigital.turborepo",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "1085735650871-ubtriolf9r58ckdgk5nbo14n9uisn8sq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHhyqzS7VBhuCEqEqZALPnqy0A_zAL7as"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085735650871-ubtriolf9r58ckdgk5nbo14n9uisn8sq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1085735650871-q4ags1p8imbibidp347mivqa1dt4938j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ftrdigital.turborepo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

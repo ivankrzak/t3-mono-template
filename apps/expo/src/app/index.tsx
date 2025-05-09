@@ -6,6 +6,7 @@ import { FlashList } from "@shopify/flash-list";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import type { RouterOutputs } from "~/utils/api";
+import { AuthTest } from "~/components/AuthTest";
 import { trpc } from "~/utils/api";
 import { useSignIn, useSignOut, useUser } from "~/utils/auth";
 
@@ -138,7 +139,7 @@ export default function Index() {
           Create <Text className="text-primary">T3</Text> Turbo
         </Text>
 
-        <MobileAuth />
+        <AuthTest />
 
         <View className="py-2">
           <Text className="font-semibold italic text-primary">

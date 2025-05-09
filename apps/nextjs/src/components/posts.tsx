@@ -1,13 +1,9 @@
 "use client";
 
-import {
-  useMutation,
-  useQueryClient,
-  useSuspenseQuery,
-} from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import z from "zod";
 
 import type { RouterOutputs } from "@acme/api";
-import { CreatePostSchema } from "@acme/db/schema";
 import { cn } from "@acme/ui";
 import { Button } from "@acme/ui/button";
 import {
@@ -26,10 +22,13 @@ import { useTRPC } from "~/trpc/react";
 export function CreatePostForm() {
   const trpc = useTRPC();
   const form = useForm({
-    schema: CreatePostSchema,
+    schema: z.object({
+      title: z.string(),
+      content: z.string(),
+    }),
     defaultValues: {
-      content: "",
       title: "",
+      content: "",
     },
   });
 
@@ -90,9 +89,26 @@ export function CreatePostForm() {
 
 export function PostList() {
   const trpc = useTRPC();
-  const { data: posts } = useSuspenseQuery(trpc.post.all.queryOptions());
+  const {
+    data: posts,
+    isLoading,
+    isError,
+  } = useQuery(
+    trpc.post.all.queryOptions(undefined, {
+      retry: false,
+    }),
+  );
 
-  if (posts.length === 0) {
+  console.log("isError", isError, posts);
+
+  if (isError) {
+    return (
+      <div className="flex flex-col items-center justify-center bg-black/10">
+        <p className="text-2xl font-bold text-white">No posts yet</p>
+      </div>
+    );
+  }
+  if (isLoading) {
     return (
       <div className="relative flex w-full flex-col gap-4">
         <PostCardSkeleton pulse={false} />
@@ -108,7 +124,7 @@ export function PostList() {
 
   return (
     <div className="flex w-full flex-col gap-4">
-      {posts.map((p) => {
+      {posts?.map((p) => {
         return <PostCard key={p.id} post={p} />;
       })}
     </div>

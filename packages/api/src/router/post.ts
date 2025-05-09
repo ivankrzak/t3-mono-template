@@ -1,40 +1,61 @@
 import type { TRPCRouterRecord } from "@trpc/server";
 import { z } from "zod";
 
-import { desc, eq } from "@acme/db";
-import { CreatePostSchema, Post } from "@acme/db/schema";
-
 import { protectedProcedure, publicProcedure } from "../trpc";
 
+const MockPostsData = [
+  {
+    id: 1,
+    title: "Title 1",
+    content: "Content",
+    createdAt: "323232",
+    updatedAt: "323232",
+  },
+  {
+    id: 2,
+    title: "Title 2",
+    content: "Content",
+    createdAt: "323232",
+    updatedAt: "323232",
+  },
+  {
+    id: 3,
+    title: "Title 3",
+    content: "Content",
+    createdAt: "323232",
+    updatedAt: "323232",
+  },
+];
+
 export const postRouter = {
-  all: publicProcedure.query(({ ctx }) => {
-    // return ctx.db.select().from(schema.post).orderBy(desc(schema.post.id));
-    return ctx.db.query.Post.findMany({
-      orderBy: desc(Post.id),
-      limit: 10,
-    });
+  all: protectedProcedure.query(({ ctx }) => {
+    return ctx.db.post.findMany();
   }),
 
   byId: publicProcedure
-    .input(z.object({ id: z.string() }))
+    .input(z.object({ id: z.number() }))
     .query(({ ctx, input }) => {
-      // return ctx.db
-      //   .select()
-      //   .from(schema.post)
-      //   .where(eq(schema.post.id, input.id));
-
-      return ctx.db.query.Post.findFirst({
-        where: eq(Post.id, input.id),
-      });
+      return ctx.db.post.findUnique({ where: { id: input.id } });
     }),
 
   create: protectedProcedure
-    .input(CreatePostSchema)
+    .input(
+      z.object({
+        title: z.string().min(1),
+        content: z.string().min(1),
+      }),
+    )
     .mutation(({ ctx, input }) => {
-      return ctx.db.insert(Post).values(input);
+      if (!ctx.user?.id) {
+        throw Error("User not exists");
+      }
+
+      return ctx.db.post.create({
+        data: { ...input, createdById: ctx.user.id },
+      });
     }),
 
-  delete: protectedProcedure.input(z.string()).mutation(({ ctx, input }) => {
-    return ctx.db.delete(Post).where(eq(Post.id, input));
+  delete: protectedProcedure.input(z.number()).mutation(({ ctx, input }) => {
+    return ctx.db.post.delete({ where: { id: input } });
   }),
 } satisfies TRPCRouterRecord;

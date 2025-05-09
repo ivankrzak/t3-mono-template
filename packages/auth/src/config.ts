@@ -4,11 +4,7 @@ import type {
   Session as NextAuthSession,
 } from "next-auth";
 import { skipCSRFCheck } from "@auth/core";
-import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import Discord from "next-auth/providers/discord";
-
-import { db } from "@acme/db/client";
-import { Account, Session, User } from "@acme/db/schema";
 
 import { env } from "../env";
 
@@ -20,16 +16,9 @@ declare module "next-auth" {
   }
 }
 
-const adapter = DrizzleAdapter(db, {
-  usersTable: User,
-  accountsTable: Account,
-  sessionsTable: Session,
-});
-
 export const isSecureContext = env.NODE_ENV !== "development";
 
 export const authConfig = {
-  adapter,
   // In development, we need to skip checks to allow Expo to work
   ...(!isSecureContext
     ? {
@@ -58,19 +47,20 @@ export const authConfig = {
 export const validateToken = async (
   token: string,
 ): Promise<NextAuthSession | null> => {
+  return null;
   const sessionToken = token.slice("Bearer ".length);
-  const session = await adapter.getSessionAndUser?.(sessionToken);
-  return session
-    ? {
-        user: {
-          ...session.user,
-        },
-        expires: session.session.expires.toISOString(),
-      }
-    : null;
+  // const session = await adapter.getSessionAndUser?.(sessionToken);
+  // return session
+  //   ? {
+  //       user: {
+  //         ...session.user,
+  //       },
+  //       expires: session.session.expires.toISOString(),
+  //     }
+  //   : null;
 };
 
 export const invalidateSessionToken = async (token: string) => {
-  const sessionToken = token.slice("Bearer ".length);
-  await adapter.deleteSession?.(sessionToken);
+  // const sessionToken = token.slice("Bearer ".length);
+  // await adapter.deleteSession?.(sessionToken);
 };

@@ -14,21 +14,24 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   newArchEnabled: true,
   assetBundlePatterns: ["**/*"],
+
   ios: {
-    bundleIdentifier: "your.bundle.identifier",
+    bundleIdentifier: "com.ftrdigital.turborepo",
     supportsTablet: true,
     icon: {
       light: "./assets/icon-light.png",
       dark: "./assets/icon-dark.png",
     },
+    googleServicesFile: "./lib/firebase/GoogleService-Info.plist",
   },
   android: {
-    package: "your.bundle.identifier",
+    package: "com.ftrdigital.turborepo",
     adaptiveIcon: {
       foregroundImage: "./assets/icon-light.png",
       backgroundColor: "#1F104A",
     },
     edgeToEdgeEnabled: true,
+    googleServicesFile: "./lib/firebase/google-services.json",
   },
   // extra: {
   //   eas: {
@@ -54,5 +57,15 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         },
       },
     ],
+    [
+      "expo-build-properties",
+      {
+        ios: {
+          useFrameworks: "static",
+        },
+      },
+    ],
+    "@react-native-firebase/app",
+    "@react-native-firebase/auth",
   ],
 });

@@ -1,5 +1,6 @@
 import { getApp, getApps, initializeApp } from "firebase/app";
 import {
+  createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
@@ -28,6 +29,16 @@ export const googleAuthProvider = new GoogleAuthProvider();
 
 export const signInWithGooglePopUp = (): ReturnType<typeof signInWithPopup> => {
   return signInWithPopup(firebaseAuth, googleAuthProvider);
+};
+
+export const signUpWithPassword = ({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}): ReturnType<typeof createUserWithEmailAndPassword> => {
+  return createUserWithEmailAndPassword(firebaseAuth, email, password);
 };
 
 export const signInWithPassword = ({

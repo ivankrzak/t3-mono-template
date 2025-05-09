@@ -29,7 +29,6 @@ const handler = async (req: NextRequest) => {
     req,
     createContext: () =>
       createTRPCContext({
-        session: null,
         headers: req.headers,
       }),
     onError({ error, path }) {

@@ -52,9 +52,9 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <AuthProvider>
-            <TRPCReactProvider>{props.children}</TRPCReactProvider>
-          </AuthProvider>
+          <TRPCReactProvider>
+            <AuthProvider>{props.children}</AuthProvider>
+          </TRPCReactProvider>
           <div className="absolute bottom-4 right-4">
             <ThemeToggle />
           </div>

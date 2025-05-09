@@ -29,6 +29,31 @@ import {
 //   return auth();
 // };
 
+const getAuthUserFromHeaders = async (headers: Headers) => {
+  const decodedTokenFomHeaders = (headers.get("Authorization") ?? null)?.slice(
+    "Bearer ".length,
+  );
+  const firebaseAdmin = getFirebaseAdminAuth();
+  const verifiedSessionFromHeaders = decodedTokenFomHeaders
+    ? await firebaseAdmin.verifyIdToken(decodedTokenFomHeaders)
+    : null;
+
+  const decodedTokenFomCookies = await getDecodedTokenFromCookie(headers);
+
+  if (!decodedTokenFomCookies && !verifiedSessionFromHeaders) {
+    return null;
+  }
+  // TODO move to context
+  const userFromDB = await db.user.findFirst({
+    where: {
+      firebaseUuid:
+        // @ts-expect-error
+        decodedTokenFomCookies?.uid ?? verifiedSessionFromHeaders.uid,
+    },
+  });
+
+  return userFromDB;
+};
 /**
  * 1. CONTEXT
  *
@@ -41,10 +66,9 @@ import {
  *
  * @see https://trpc.io/docs/server/context
  */
-export const createTRPCContext = async (opts: {
-  headers: Headers;
-  session: null;
-}) => {
+export const createTRPCContext = async (opts: { headers: Headers }) => {
+  console.log("Header,", opts.headers);
+  const authUser = await getAuthUserFromHeaders(opts.headers);
   // const authToken = opts.headers.get("Authorization") ?? null;
   // const session = await isomorphicGetSession(opts.headers);
 
@@ -54,6 +78,7 @@ export const createTRPCContext = async (opts: {
   return {
     headers: opts.headers,
     db,
+    user: authUser,
   };
 };
 
@@ -135,33 +160,15 @@ export const publicProcedure = t.procedure.use(timingMiddleware);
  */
 
 const enforceUserIsAuth = t.middleware(async ({ ctx, next }) => {
-  console.log("CTX HEADERS", ctx.headers);
-  const decodedTokenFomHeaders = (
-    ctx.headers.get("Authorization") ?? null
-  )?.slice("Bearer ".length);
-  const firebaseAdmin = getFirebaseAdminAuth();
-  const verifiedSessionFromHeaders = decodedTokenFomHeaders
-    ? await firebaseAdmin.verifyIdToken(decodedTokenFomHeaders)
-    : null;
+  console.log("CTX HEADERS USER", ctx.user);
 
-  const decodedTokenFomCookies = await getDecodedTokenFromCookie(ctx.headers);
-
-  if (!decodedTokenFomCookies && !verifiedSessionFromHeaders) {
+  if (!ctx.user) {
     throw new TRPCError({ code: "UNAUTHORIZED", message: "Unauthorized" });
   }
-  // TODO move to context
-  const userFromDB = await db.user.findFirst({
-    where: {
-      firebaseUuid:
-        // @ts-expect-error
-        decodedTokenFomCookies?.uid ?? verifiedSessionFromHeaders.uid,
-    },
-  });
 
   return next({
     ctx: {
       ...ctx,
-      user: userFromDB,
     },
   });
 });

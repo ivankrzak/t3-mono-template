@@ -10,7 +10,6 @@ export const authRouter = {
     .input(z.object({ token: z.string() }))
     .mutation(async ({ input }) => {
       const { token } = input;
-      console.log("INPUT", input);
       const firebaseAdmin = getFirebaseAdminAuth();
       const decodedToken = await firebaseAdmin.verifyIdToken(token);
 
@@ -33,6 +32,19 @@ export const authRouter = {
         const test = (await cookies()).set(options);
         console.log("test", test);
       }
+    }),
+  signUp: publicProcedure
+    .input(
+      z.object({
+        firebaseUid: z.string(),
+        name: z.string().optional(),
+        image: z.string().optional(),
+        email: z.string(),
+      }),
+    )
+    .mutation(async ({ input, ctx }) => {
+      const createdUser = ctx.db.user.create({ data: input });
+      return createdUser;
     }),
   signOut: protectedProcedure.mutation(async () => {
     const options = {

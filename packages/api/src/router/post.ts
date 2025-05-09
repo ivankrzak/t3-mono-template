@@ -3,29 +3,29 @@ import { z } from "zod";
 
 import { protectedProcedure, publicProcedure } from "../trpc";
 
-const MockPostsData = [
-  {
-    id: 1,
-    title: "Title 1",
-    content: "Content",
-    createdAt: "323232",
-    updatedAt: "323232",
-  },
-  {
-    id: 2,
-    title: "Title 2",
-    content: "Content",
-    createdAt: "323232",
-    updatedAt: "323232",
-  },
-  {
-    id: 3,
-    title: "Title 3",
-    content: "Content",
-    createdAt: "323232",
-    updatedAt: "323232",
-  },
-];
+// const MockPostsData = [
+//   {
+//     id: 1,
+//     title: "Title 1",
+//     content: "Content",
+//     createdAt: "323232",
+//     updatedAt: "323232",
+//   },
+//   {
+//     id: 2,
+//     title: "Title 2",
+//     content: "Content",
+//     createdAt: "323232",
+//     updatedAt: "323232",
+//   },
+//   {
+//     id: 3,
+//     title: "Title 3",
+//     content: "Content",
+//     createdAt: "323232",
+//     updatedAt: "323232",
+//   },
+// ];
 
 export const postRouter = {
   all: protectedProcedure.query(({ ctx }) => {

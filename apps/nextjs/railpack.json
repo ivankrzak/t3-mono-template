@@ -12,9 +12,10 @@
     "build": {
       "inputs": [{ "step": "install" }],
       "commands": ["npx turbo run build"]
+    },
+    "deploy": {
+      "inputs": [{ "step": "build" }],
+      "commands": ["node dist/index.js"]
     }
-  },
-  "deploy": {
-    "startCommand": "node dist/index.js"
   }
 }

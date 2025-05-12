@@ -7,11 +7,11 @@
     },
     "install": {
       "inputs": [{ "step": "preinstall" }],
-      "commands": ["npx pnpm install"]
+      "commands": ["pnpm install"]
     },
     "build": {
       "inputs": [{ "step": "install" }],
-      "commands": ["cd ../.. && npx turbo run build"]
+      "commands": ["npx turbo run build"]
     }
   },
   "deploy": {

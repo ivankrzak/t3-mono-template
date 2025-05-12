@@ -1,6 +1,6 @@
+import type { Auth } from "firebase-admin/auth";
 import { TRPCError } from "@trpc/server";
 import * as admin from "firebase-admin";
-import { Auth } from "firebase-admin/auth";
 
 let initialized = false;
 
@@ -9,6 +9,7 @@ const initializeFirebaseAdmin = () => {
     try {
       // TODO Update this to use service account file from S3 storage
       // Parse the JSON string from the environment variable
+      console.log(process.env);
       if (!process.env.FIREBASE_SERVICE_ACCOUNT_KEY_JSON) {
         throw new Error(
           "FIREBASE_SERVICE_ACCOUNT_KEY_JSON environment variable is not defined",

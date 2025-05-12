@@ -7,7 +7,7 @@
     },
     "install": {
       "inputs": [{ "step": "preinstall" }],
-      "commands": ["pnpm install"]
+      "commands": ["npx pnpm install"]
     },
     "build": {
       "inputs": [{ "step": "install" }],

@@ -3,7 +3,7 @@
   "provider": "node",
   "steps": {
     "preinstall": {
-      "commands": ["npm install -g pnpm"]
+      "commands": ["npm install -g pnpm turbo"]
     },
     "install": {
       "inputs": [{ "step": "preinstall" }],

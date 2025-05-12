@@ -7,7 +7,7 @@
     },
     "install": {
       "inputs": [{ "step": "preinstall" }],
-      "commands": ["pnpm install"]
+      "commands": ["cd apps/nextjs", "pnpm install"]
     },
     "build": {
       "inputs": [{ "step": "install" }],

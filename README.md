@@ -2,11 +2,7 @@
 
 > [!NOTE]
 >
-> NextAuth setup now works for Expo app!
-
-> [!NOTE]
->
-> OAuth deployments are now working for preview deployments. Read [deployment guide](https://github.com/t3-oss/create-t3-turbo#auth-proxy) and [check out the source](./apps/auth-proxy) to learn more!
+> Includes Firebase Auth / Prisma for ORM
 
 ## Installation
 
@@ -37,9 +33,6 @@ It uses [Turborepo](https://turborepo.org) and contains:
 .vscode
   └─ Recommended extensions and settings for VSCode users
 apps
-  ├─ auth-proxy
-  |   ├─ Nitro server to proxy OAuth requests in preview deployments
-  |   └─ Uses Auth.js Core
   ├─ expo
   |   ├─ Expo SDK 53 (EXPERIMENTAL)
   |   |   > [!WARNING]
@@ -57,8 +50,6 @@ apps
 packages
   ├─ api
   |   └─ tRPC v11 router definition
-  ├─ auth
-  |   └─ Authentication using next-auth.
   ├─ db
   |   └─ Typesafe db calls using Drizzle & Supabase
   └─ ui

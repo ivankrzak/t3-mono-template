@@ -2,7 +2,7 @@
   "$schema": "https://railway.com/railway.schema.json",
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "cd apps/nextjs && npx turbo run build:nextjs"
+    "buildCommand": "cd apps/nextjs && npx turbo run build --filter=nextjs"
   },
   "deploy": {
     "preDeployCommand": ["pnpm prisma generate"],

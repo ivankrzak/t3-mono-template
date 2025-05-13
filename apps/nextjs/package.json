@@ -9,7 +9,6 @@
   },
   "packageManager": "pnpm@10.6.3",
   "scripts": {
-    "install": "pnpm install --no-frozen-lockfile",
     "build": "pnpm with-env next build",
     "clean": "git clean -xdf .cache .next .turbo node_modules",
     "dev": "pnpm with-env next dev --turbopack",

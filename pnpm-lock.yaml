@@ -73,11 +73,11 @@ importers:
         specifier: ^0.20.1
         version: 0.20.1
       '@react-native-firebase/app':
-        specifier: 22.1.0
-        version: 22.1.0(expo@53.0.3(@babel/core@7.27.1)(@expo/metro-runtime@5.0.4(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)
+        specifier: 22.2.0
+        version: 22.2.0(expo@53.0.3(@babel/core@7.27.1)(@expo/metro-runtime@5.0.4(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)
       '@react-native-firebase/auth':
-        specifier: 22.1.0
-        version: 22.1.0(@react-native-firebase/app@22.1.0(expo@53.0.3(@babel/core@7.27.1)(@expo/metro-runtime@5.0.4(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(expo@53.0.3(@babel/core@7.27.1)(@expo/metro-runtime@5.0.4(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))
+        specifier: 22.2.0
+        version: 22.2.0(@react-native-firebase/app@22.2.0(expo@53.0.3(@babel/core@7.27.1)(@expo/metro-runtime@5.0.4(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(expo@53.0.3(@babel/core@7.27.1)(@expo/metro-runtime@5.0.4(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))
       '@shopify/flash-list':
         specifier: 1.8.0
         version: 1.8.0(@babel/runtime@7.27.1)(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)
@@ -3303,8 +3303,8 @@ packages:
   '@radix-ui/rect@1.1.1':
     resolution: {integrity: sha512-HPwpGIzkl28mWyZqG52jiqDJ12waP11Pa1lGoiyUkIEuMLBP0oeK/C89esbXrxsky5we7dfd8U58nm0SgAWpVw==}
 
-  '@react-native-firebase/app@22.1.0':
-    resolution: {integrity: sha512-s01yjF92Fpre7Ff5UzNpVE4q25x2eF+nD8SGzZzBp7nTQjK+4U+VllJ3ajvbjJkfIyMYNBowM135iK/DO5cwDA==}
+  '@react-native-firebase/app@22.2.0':
+    resolution: {integrity: sha512-zw7KRo1nZwj9+ED6SHgl5/ioRqcA8RwqBuiGWx5Nrr4JrhbLpaihfPuDsGcn0LvEO5knVrhZvQP1fgzLjRsUgw==}
     peerDependencies:
       expo: '>=47.0.0'
       react: '*'
@@ -3313,10 +3313,10 @@ packages:
       expo:
         optional: true
 
-  '@react-native-firebase/auth@22.1.0':
-    resolution: {integrity: sha512-MOYNCMPGWKkSHQauurFjikFMcnEHpPPdXFylPhLYjodDgmHjbIkbCm82GBhgzKbQR5LDFWUGkq2CE8Hw59VyNw==}
+  '@react-native-firebase/auth@22.2.0':
+    resolution: {integrity: sha512-RnuZVisa9a/ey9nyeBHUDkMNwoHLRuvDCjGwC/qgj/ygyEAjOTV4zqZ/OHSVOhQO/UwU4L0tYdxwT2EQorhgDA==}
     peerDependencies:
-      '@react-native-firebase/app': 22.1.0
+      '@react-native-firebase/app': 22.2.0
       expo: '>=47.0.0'
     peerDependenciesMeta:
       expo:
@@ -11194,7 +11194,7 @@ snapshots:
 
   '@radix-ui/rect@1.1.1': {}
 
-  '@react-native-firebase/app@22.1.0(expo@53.0.3(@babel/core@7.27.1)(@expo/metro-runtime@5.0.4(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)':
+  '@react-native-firebase/app@22.2.0(expo@53.0.3(@babel/core@7.27.1)(@expo/metro-runtime@5.0.4(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)':
     dependencies:
       firebase: 11.3.1
       react: 19.0.0
@@ -11204,9 +11204,9 @@ snapshots:
     transitivePeerDependencies:
       - '@react-native-async-storage/async-storage'
 
-  '@react-native-firebase/auth@22.1.0(@react-native-firebase/app@22.1.0(expo@53.0.3(@babel/core@7.27.1)(@expo/metro-runtime@5.0.4(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(expo@53.0.3(@babel/core@7.27.1)(@expo/metro-runtime@5.0.4(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))':
+  '@react-native-firebase/auth@22.2.0(@react-native-firebase/app@22.2.0(expo@53.0.3(@babel/core@7.27.1)(@expo/metro-runtime@5.0.4(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(expo@53.0.3(@babel/core@7.27.1)(@expo/metro-runtime@5.0.4(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))':
     dependencies:
-      '@react-native-firebase/app': 22.1.0(expo@53.0.3(@babel/core@7.27.1)(@expo/metro-runtime@5.0.4(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)
+      '@react-native-firebase/app': 22.2.0(expo@53.0.3(@babel/core@7.27.1)(@expo/metro-runtime@5.0.4(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)
       plist: 3.1.0
     optionalDependencies:
       expo: 53.0.3(@babel/core@7.27.1)(@expo/metro-runtime@5.0.4(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.79.1(@babel/core@7.27.1)(@types/react@19.1.2)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)
